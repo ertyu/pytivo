@@ -3,15 +3,15 @@
 <html>
 <head>
 <title>pyTivo - Push</title>
-<link rel="stylesheet" type="text/css" href="/main.css">
+<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 #set $folders = $name.split('/')
-<form action="/TiVoConnect" method="POST">
+<form action="TiVoConnect" method="POST">
 <p id="titlep"><span id="title">
-<a href="/">pyTivo</a> /
+<a href=".">pyTivo</a> /
 #if len($folders) > 1
-<a href="/TiVoConnect?Command=QueryContainer&amp;Container=$quote($folders[0])&amp;Format=text/html">
+<a href="TiVoConnect?Command=QueryContainer&amp;Container=$quote($folders[0])&amp;Format=text/html">
 #end if
 Push from $folders[0]
 #if len($folders) > 1
@@ -19,7 +19,7 @@ Push from $folders[0]
   #if len($folders) > 2
     #for $pos, $n in enumerate($folders[1:-1])
       #set $ppath = '/'.join($folders[:$pos + 2])
-/ <a href="/TiVoConnect?Command=QueryContainer&amp;Container=$quote($ppath)&amp;Format=text/html">$n</a>
+/ <a href="TiVoConnect?Command=QueryContainer&amp;Container=$quote($ppath)&amp;Format=text/html">$n</a>
     #end for
   #end if
 / $folders[-1]
@@ -36,8 +36,8 @@ Push from $folders[0]
 	  #if $video.is_dir
 	    ## This is a folder
 		<td></td>
-		<td><img src="/folder.png" alt=""></td>
-		<td class="progmain"><a href="/TiVoConnect?Command=QueryContainer&amp;Container=$quote($name)/$quote($video.name)&amp;Format=text/html">$video.title</a></td>
+		<td><img src="folder.png" alt=""></td>
+		<td class="progmain"><a href="TiVoConnect?Command=QueryContainer&amp;Container=$quote($name)/$quote($video.name)&amp;Format=text/html">$video.title</a></td>
 		<td class="progsize">$video.total_items Items</td>
 		<td class="progdate">$video.textDate</td>
 	  #else

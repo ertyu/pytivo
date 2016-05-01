@@ -30,7 +30,7 @@
             <Content>
                 #if $file['is_playlist']
                 <ContentType>x-tivo-container/playlist</ContentType>
-                <Url>/TiVoConnect?Command=QueryContainer&amp;Container=$quote($container)/$quote($file['path'].strip())</Url>
+                <Url>TiVoConnect?Command=QueryContainer&amp;Container=$quote($container)/$quote($file['path'].strip())</Url>
                 #else
                 <ContentType>audio/mpeg</ContentType>
                 <AcceptsParams>No</AcceptsParams>
@@ -48,7 +48,7 @@
         <Links>
             <Content>
                 <ContentType>x-tivo-container/playlist</ContentType>
-                <Url>/TiVoConnect?Command=QueryContainer&amp;Container=$quote($container)$quote($file.part_path)</Url>
+                <Url>TiVoConnect?Command=QueryContainer&amp;Container=$quote($container)$quote($file.part_path)</Url>
             </Content>
         </Links>
     </Item>

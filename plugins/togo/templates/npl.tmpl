@@ -3,14 +3,14 @@
 <html>
 <head>
 <title>pyTivo - ToGo</title>
-<link rel="stylesheet" type="text/css" href="/main.css">
+<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<form action="/TiVoConnect" method="POST">
+<form action="TiVoConnect" method="POST">
 <p id="titlep"><span id="title">
-<a href="/">pyTivo</a> /
+<a href=".">pyTivo</a> /
   #if $folder != ''
-<a href="/TiVoConnect?Command=NPL&amp;Container=$quote($container)&amp;TiVo=$tivoIP">
+<a href="TiVoConnect?Command=NPL&amp;Container=$quote($container)&amp;TiVo=$tivoIP">
   #end if
 Pull from $tname
   #if $folder != ''
@@ -33,7 +33,7 @@ Pull from $tname
 	#if $Offset < -($shows_per_page+1)
            #set $Offset = -($shows_per_page+1)
 	#end if
-	<a href="/TiVoConnect?Command=NPL&amp;Container=$quote($container)&amp;TiVo=$tivoIP&amp;AnchorItem=$FirstAnchor&amp;AnchorOffset=$Offset&amp;Folder=$quote($folder)">Previous Page</a>
+	<a href="TiVoConnect?Command=NPL&amp;Container=$quote($container)&amp;TiVo=$tivoIP&amp;AnchorItem=$FirstAnchor&amp;AnchorOffset=$Offset&amp;Folder=$quote($folder)">Previous Page</a>
 	</td></tr>
   #end if
   #set $i = 0
@@ -46,8 +46,8 @@ Pull from $tname
 	  #if $row['ContentType'].startswith('x-tivo-container')
 	    ## This is a folder
 		<td></td>
-		<td><img src="/folder.png" alt=""></td>
-		<td class="progmain"><a href='/TiVoConnect?Command=NPL&amp;Container=$quote($container)&amp;Folder=$quote(row["Url"])&amp;TiVo=$tivoIP'>$row['Title'] </a></td>
+		<td><img src="folder.png" alt=""></td>
+		<td class="progmain"><a href='TiVoConnect?Command=NPL&amp;Container=$quote($container)&amp;Folder=$quote(row["Url"])&amp;TiVo=$tivoIP'>$row['Title'] </a></td>
 		<td class="progsize">$row["TotalItems"] Items</td>
 		<td class="progdate">$row["LastChangeDate"]</td>
 	  #else
@@ -59,17 +59,17 @@ Pull from $tname
 		</td>
 		<td>
 		#if 'CopyProtected' in $row and $row['CopyProtected'] == 'Yes'
-			<img src="/nocopy.png" alt="">
+			<img src="nocopy.png" alt="">
 		#elif 'Icon' in $row
 		    <!-- Display icons similar to TiVo colored circles -->
 			#if $row['Icon'] == 'urn:tivo:image:expires-soon-recording'
-				<img src="/soon.png" alt="">
+				<img src="soon.png" alt="">
 			#else if $row['Icon'] == 'urn:tivo:image:expired-recording'
-				<img src="/expired.png" alt="">
+				<img src="expired.png" alt="">
 			#else if $row['Icon'] == 'urn:tivo:image:save-until-i-delete-recording'
-				<img src="/kuid.png" alt="">
+				<img src="kuid.png" alt="">
 			#else if $row['Icon'] == 'urn:tivo:image:in-progress-recording'
-				<img src="/recording.png" alt="">
+				<img src="recording.png" alt="">
 			#end if
 		#end if
 		</td>
@@ -92,7 +92,7 @@ Pull from $tname
 					<div class="transferring">
 					#set $gb = '%.3f GB' % (float($this_status['size']) / (1024 ** 3))
 					Transfering - $this_status['rate']<br>$gb
-					<a href="/TiVoConnect?Command=ToGoStop&amp;Container=$quote($container)&amp;Url=$quote($row['Url'])">Stop Transfer</a>
+					<a href="TiVoConnect?Command=ToGoStop&amp;Container=$quote($container)&amp;Url=$quote($row['Url'])">Stop Transfer</a>
 					</div>
 				#elif $this_status['running'] and $this_status['rate'] == ""
 					<div class="transferring">
@@ -110,7 +110,7 @@ Pull from $tname
 				#elif $this_status['queued']
 					<div class="queued">
 					Queued: $queue.index($row['Url'])<br>
-					<a href="/TiVoConnect?Command=Unqueue&amp;Container=$quote($container)&amp;Url=$quote($row['Url'])&amp;TiVo=$tivoIP">Unqueue</a>
+					<a href="TiVoConnect?Command=Unqueue&amp;Container=$quote($container)&amp;Url=$quote($row['Url'])&amp;TiVo=$tivoIP">Unqueue</a>
 					</div>
 				#end if
 			#end if
@@ -135,7 +135,7 @@ Pull from $tname
   #if ($TotalItems - $ItemCount) > ($ItemStart + 1)
      <tr><td colspan="5">
      #set $Offset = $shows_per_page - 1
-     <a href="/TiVoConnect?Command=NPL&amp;Container=$quote($container)&amp;TiVo=$tivoIP&amp;AnchorItem=$FirstAnchor&amp;AnchorOffset=$Offset&amp;Folder=$quote($folder)">Next Page</a>
+     <a href="TiVoConnect?Command=NPL&amp;Container=$quote($container)&amp;TiVo=$tivoIP&amp;AnchorItem=$FirstAnchor&amp;AnchorOffset=$Offset&amp;Folder=$quote($folder)">Next Page</a>
      </td></tr>
   #end if
 </table>

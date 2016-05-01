@@ -49,7 +49,7 @@ function redir(target)
     var answer = confirm('Are you sure you wish to ' + target +
                          ' pyTivo? Any unsaved changes will be lost!')
     if (answer) {
-        window.location = '/TiVoConnect?Command=' + target +
+        window.location = 'TiVoConnect?Command=' + target +
                           '&Container=Settings'
     }
 }

@@ -42,7 +42,7 @@ VIDEO_FORMATS_TS = """<?xml version="1.0" encoding="utf-8"?>
 BASE_HTML = """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 "http://www.w3.org/TR/html4/strict.dtd">
 <html> <head><title>pyTivo</title>
-<link rel="stylesheet" type="text/css" href="/main.css">
+<link rel="stylesheet" type="text/css" href="main.css">
 </head> <body> %s </body> </html>"""
 
 RELOAD = '<p>The <a href="%s">page</a> will reload in %d seconds.</p>'
@@ -348,13 +348,13 @@ class TivoHTTPHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         for section, settings in config.getShares():
             plugin_type = settings.get('type')
             if plugin_type == 'settings':
-                t.admin += ('<a href="/TiVoConnect?Command=Settings&amp;' +
+                t.admin += ('<a href="TiVoConnect?Command=Settings&amp;' +
                             'Container=' + quote(section) +
                             '">Settings</a><br>')
             elif plugin_type == 'togo' and t.togo:
                 for tsn in config.tivos:
                     if tsn and 'address' in config.tivos[tsn]:
-                        t.togo += ('<a href="/TiVoConnect?' +
+                        t.togo += ('<a href="TiVoConnect?' +
                             'Command=NPL&amp;Container=' + quote(section) +  
                             '&amp;TiVo=' + config.tivos[tsn]['address'] +
                             '">' + config.tivos[tsn]['name'] +
@@ -362,7 +362,7 @@ class TivoHTTPHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             elif plugin_type and t.shares:
                 plugin = GetPlugin(plugin_type)
                 if hasattr(plugin, 'Push'):
-                    t.shares += ('<a href="/TiVoConnect?Command=' +
+                    t.shares += ('<a href="TiVoConnect?Command=' +
                                  'QueryContainer&amp;Container=' +
                                  quote(section) + '&Format=text/html">' +
                                  section + '</a><br>')
